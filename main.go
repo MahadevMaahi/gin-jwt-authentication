@@ -1,13 +1,20 @@
 package main
 
 import (
+	"fmt"
 	"os"
+	"log"
 	"github.com/gin-gonic/gin"
-	""
+	routes "github.com/MahadevMaahi/gin-jwt-authentication/routes"
+	"github.com/joho/godotenv"
 )
 
-func main()
-{
+func main() {
+	fmt.Println("Server Starting ...")
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("Error Loading .env file")
+	}
 	port := os.Getenv("PORT")
 
 	if port == "" {
@@ -29,4 +36,5 @@ func main()
 	})
 
 	router.Run(":" + port)
+	fmt.Println("Server listening on port" + port)
 }
